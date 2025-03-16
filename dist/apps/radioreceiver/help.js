@@ -844,7 +844,7 @@
         </select>
         <div class="cfgBlock">
           <span .hidden=${!le(this.scheme)}
-            ><label for="bandwidth">Bandwidth: </label
+            ><label for="bandwidth"频宽: </label
             ><input
               type="number"
               id="bandwidth"
@@ -868,7 +868,7 @@
               >${Qi}</span
             ></span
           ><span .hidden=${!he(this.scheme)}>
-            <label for="squelch">Squelch: </label
+            <label for="squelch">静噪: </label
             ><input
               type="range"
               id="squelch"

@@ -155,7 +155,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         </select>
         <div class="cfgBlock">
           <span .hidden=${!hasBandwidth(this.scheme)}
-            ><label for="bandwidth">Bandwidth: </label
+            ><label for="bandwidth"频宽: </label
             ><input
               type="number"
               id="bandwidth"
@@ -179,7 +179,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
               >${Icons.Stereo}</span
             ></span
           ><span .hidden=${!hasSquelch(this.scheme)}>
-            <label for="squelch">Squelch: </label
+            <label for="squelch">静噪: </label
             ><input
               type="range"
               id="squelch"
