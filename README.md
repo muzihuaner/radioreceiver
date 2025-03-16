@@ -1,16 +1,16 @@
 # Radio Receiver
 
-An application to listen to radio transmissions from your browser using a cheap USB digital TV tuner.
+一种使用廉价的 USB 数字电视调谐器从浏览器收听无线电传输的应用程序。
 
-Try it out at [radio.ea1iti.es](https://radio.ea1iti.es).
+在线体验 [radio.ea1iti.es](https://radio.ea1iti.es).
 
 ## What is this
 
-Radio Receiver is an HTML5 webpage that uses an USB digital TV receiver to capture radio signals, demodulates them in the browser, and plays the demodulated audio through your computer's speakers or headphones. This is called SDR (Software-Defined Radio), because all the radio signal processing is done by software running in the computer instead of purpose-built hardware.
+无线电接收器是一个 HTML5 网页，它使用 USB 数字电视接收器捕获无线电信号，在浏览器中解调它们，并通过计算机的扬声器或耳机播放解调后的音频。这被称为 SDR（软件定义无线电），因为所有无线电信号处理都是由计算机中运行的软件而不是专用硬件完成的。
 
 ## Compatible hardware and software
 
-Radio Receiver was written to work with an RTL-2832U-based DVB-T (European digital TV) USB receiver, with a R820T tuner chip. This hardware configuration is a little dated, but support for newer tuner chips is planned.
+无线电接收器是为与基于 RTL-2832U 的 DVB-T（欧洲数字电视）USB 接收器配合使用而编写的，该接收器配有 R820T 调谐器芯片。此硬件配置有点过时，但计划支持较新的调谐器芯片。
 
 ## Building
 

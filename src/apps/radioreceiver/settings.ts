@@ -36,9 +36,9 @@ export type LowFrequencyMethod = {
 };
 
 const LOW_FREQUENCY_METHODS: Map<LowFrequencyMethodName, string> = new Map([
-  ["default", "Default method"],
-  ["directSampling", "Direct sampling"],
-  ["upconverter", "External upconverter"],
+  ["default", "默认"],
+  ["directSampling", "直接采样"],
+  ["upconverter", "外部上变频器"],
 ]);
 
 const DIRECT_SAMPLING_CHANNELS: Map<DirectSamplingChannel, string> = new Map([
@@ -54,7 +54,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
 
   render() {
     return html`<rr-window
-      label="Settings"
+      label="设置"
       id="settings"
       closeable
       class=${this.inline ? "inline" : ""}
@@ -62,7 +62,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
       .fixed=${this.inline}
     >
       <div>
-        <label for="sampleRate">Sample rate: </label
+        <label for="sampleRate">采样率: </label
         ><select
           id="sampleRate"
           .disabled=${this.playing}
@@ -77,7 +77,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         </select>
       </div>
       <div>
-        <label for="ppm">Clock correction: </label
+        <label for="ppm">时钟校正: </label
         ><input
           id="ppm"
           type="number"
@@ -89,7 +89,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         />PPM
       </div>
       <div>
-        <label for="fftSize">FFT size: </label
+        <label for="fftSize">FFT 大小: </label
         ><select id="fftSize" @change=${this.onFftSizeChange}>
           ${AVAILABLE_FFT_SIZES.map(
             (s) =>
@@ -100,7 +100,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         </select>
       </div>
       <div>
-        <label for="biasTee">Bias T: </label
+        <label for="biasTee">Bias T(给天线供电): </label
         ><input
           type="checkbox"
           id="biasTee"
@@ -109,7 +109,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         />
       </div>
       <div>
-        <label for="lowFreqMethod">0-29MHz method: </label
+        <label for="lowFreqMethod">0-29MHz 接收方法: </label
         ><select id="lowFreqMethod" @change=${this.onLowFrequencyMethodChange}>
           ${LOW_FREQUENCY_METHODS.entries().map(
             ([k, v]) =>
@@ -123,7 +123,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         </select>
       </div>
       <div .hidden=${this.lowFrequencyMethod.name != "directSampling"}>
-        <label for="directSamplingChannel">Direct sampling channel: </label
+        <label for="directSamplingChannel">直接采样通道: </label
         ><select
           id="directSamplingChannel"
           @change=${this.onDirectSamplingChannelChange}
@@ -140,7 +140,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         </select>
       </div>
       <div .hidden=${this.lowFrequencyMethod.name != "upconverter"}>
-        <label for="upconverterFrequency">Upconverter frequency: </label
+        <label for="upconverterFrequency">上变频器频率: </label
         ><input
           type="number"
           id="upconverterFrequency"
@@ -152,7 +152,7 @@ export class RrSettings extends WindowDelegate(LitElement) {
         />
       </div>
       <div .hidden=${this.lowFrequencyMethod.name != "upconverter"}>
-        <label for="upconverterBiasTee">Use bias T for upconverter: </label
+        <label for="upconverterBiasTee">为上变频器使用BiasT: </label
         ><input
           type="checkbox"
           id="upconverterBiasTee"

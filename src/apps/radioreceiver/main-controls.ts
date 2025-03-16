@@ -71,7 +71,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
 
   render() {
     return html`<rr-window
-      label="Controls"
+      label="控制台"
       id="controls"
       class=${this.inline ? "inline" : ""}
       .position=${this.position}
@@ -106,7 +106,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
           >`
         : nothing}
       <div>
-        <label for="centerFrequency">Center frequency: </label
+        <label for="centerFrequency">中心频率: </label
         ><rr-frequency-input
           id="centerFrequency"
           .min=${0}
@@ -119,7 +119,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         ></rr-frequency-input>
       </div>
       <div>
-        <label for="tunedFrequency">Tuned frequency: </label
+        <label for="tunedFrequency">调谐频率: </label
         ><rr-frequency-input
           id="tunedFrequency"
           min=${0}
@@ -132,7 +132,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         ></rr-frequency-input>
       </div>
       <div>
-        <label for="tuningStep">Tuning step: </label
+        <label for="tuningStep">调谐步进: </label
         ><input
           id="tuningStep"
           type="number"
@@ -144,7 +144,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         Hz
       </div>
       <div>
-        <label for="scheme">Modulation: </label>
+        <label for="scheme">调制方式: </label>
         <select id="scheme" @change=${this.onModeChange}>
           ${this.availableSchemes.map(
             (k) =>
@@ -165,7 +165,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
               .value=${String(this.bandwidth)}
               @change=${this.onBandwidthChange} /></span
           ><span .hidden=${!hasStereo(this.scheme)}>
-            <label for="stereo">Stereo: </label
+            <label for="stereo">立体声: </label
             ><input
               type="checkbox"
               id="stereo"
@@ -193,7 +193,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         </div>
       </div>
       <div>
-        <label for="gain">Gain: </label
+        <label for="gain">增益: </label
         ><input
           type="range"
           id="gain"
@@ -212,7 +212,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
           .disabled=${this.gainDisabled}
           @change=${this.onGainAutoChange}
         />
-        <label for="gainAuto">Auto gain</label>
+        <label for="gainAuto">自动增益</label>
       </div>
     </rr-window>`;
   }

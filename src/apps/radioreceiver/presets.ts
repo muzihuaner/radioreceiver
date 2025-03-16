@@ -103,8 +103,8 @@ export class RrPresets extends WindowDelegate(LitElement) {
   render() {
     return html`<rr-window
         label=${this.selectedIndex === undefined
-          ? "Presets"
-          : `Current preset: ${this.presets[this.selectedIndex].name}`}
+          ? "预设"
+          : `当前预设: ${this.presets[this.selectedIndex].name}`}
         id="presets"
         class=${this.inline ? "inline" : ""}
         closeable
@@ -124,13 +124,13 @@ export class RrPresets extends WindowDelegate(LitElement) {
         <table>
           <tr>
             <th id="name" @click=${this.onHeaderClick}>
-              Name${this.getSortArrow("name")}
+              名称${this.getSortArrow("name")}
             </th>
             <th id="frequency" @click=${this.onHeaderClick}>
-              Frequency${this.getSortArrow("frequency")}
+              频率${this.getSortArrow("frequency")}
             </th>
             <th id="mode" @click=${this.onHeaderClick}>
-              Mode${this.getSortArrow("mode")}
+              模式${this.getSortArrow("mode")}
             </th>
             <th></th>
           </tr>
@@ -161,11 +161,9 @@ export class RrPresets extends WindowDelegate(LitElement) {
         </table>
         ${this.presets.length == 0
           ? html`<p style="max-width: 50ex">
-              You can use Presets to flip quickly to your favorite stations or
-              frequencies. Click the
+             您可以使用预设快速切换到您喜欢的电台或频率。点击
               <button disabled class="buttonIllustration">${Icons.Add}</button>
-              button on this window's top left corner to add the current
-              frequency to the presets.
+             此窗口左上角的按钮将当前频率添加到预设中。
             </p>`
           : nothing}
       </rr-window>
