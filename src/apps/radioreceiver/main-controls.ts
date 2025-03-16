@@ -155,7 +155,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
         </select>
         <div class="cfgBlock">
           <span .hidden=${!hasBandwidth(this.scheme)}
-            ><label for="bandwidth"频宽: </label
+            ><label for="bandwidth">频宽: </label
             ><input
               type="number"
               id="bandwidth"

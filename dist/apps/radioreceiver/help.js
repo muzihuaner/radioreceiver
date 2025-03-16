@@ -844,7 +844,7 @@
         </select>
         <div class="cfgBlock">
           <span .hidden=${!le(this.scheme)}
-            ><label for="bandwidth"频宽: </label
+            ><label for="bandwidth">频宽: </label
             ><input
               type="number"
               id="bandwidth"
