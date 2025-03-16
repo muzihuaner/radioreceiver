@@ -178,7 +178,7 @@ export class RrPresets extends WindowDelegate(LitElement) {
         @rr-window-closed=${this.onEditorClosed}
       >
         <div>
-          <label for="presetName">Name: </label
+          <label for="presetName">名称: </label
           ><input
             id="presetName"
             type="text"
@@ -188,42 +188,42 @@ export class RrPresets extends WindowDelegate(LitElement) {
           />
         </div>
         <div>
-          Frequency:
+          频率:
           <b
             >${humanFrequency(
               this.editorContent.tunedFrequency,
               this.editorContent.scale
             )}</b
-          >, Tuning step:
+          >, 步进:
           <b>${humanFrequency(this.editorContent.tuningStep, 1)}</b>
         </div>
         <div>
-          Modulation:
+          调制方式:
           <b
             >${this.editorContent.scheme}${hasStereo(this.editorContent.scheme)
               ? this.editorContent.stereo
-                ? " Stereo"
+                ? " 立体声"
                 : " Mono"
               : nothing}</b
           >${hasBandwidth(this.editorContent.scheme)
-            ? html`, Bandwidth:
+            ? html`, 频宽:
                 <b>${humanFrequency(this.editorContent.bandwidth, 1)}</b>`
             : nothing}
         </div>
         <div>
-          Gain:
+          增益:
           <b
             >${this.editorContent.gain === null
-              ? "Auto"
+              ? "自动"
               : this.editorContent.gain}</b
           >${hasSquelch(this.editorContent.scheme)
-            ? html`, Squelch: <b>${this.editorContent.squelch}</b>`
+            ? html`, 静噪: <b>${this.editorContent.squelch}</b>`
             : nothing}
         </div>
         ${this.editorIndex !== undefined
           ? html`<div>
               <button @click=${this.onEditorReplaceClick}>
-                Replace with current settings
+                用当前设置替换
               </button>
             </div>`
           : nothing}
@@ -232,7 +232,7 @@ export class RrPresets extends WindowDelegate(LitElement) {
             .disabled=${this.editorValidationError !== undefined}
             @click=${this.onEditorSaveClick}
           >
-            Save</button
+            保存</button
           >${this.editorValidationError !== undefined
             ? html` <i>${this.editorValidationError}</i>`
             : nothing}
@@ -287,7 +287,7 @@ export class RrPresets extends WindowDelegate(LitElement) {
   }
 
   private onAddClick(e: PointerEvent) {
-    this.editorTitle = "New Preset";
+    this.editorTitle = "新的预设";
     this.editorIndex = undefined;
     this.editorContent = {
       name: "",
@@ -338,17 +338,17 @@ export class RrPresets extends WindowDelegate(LitElement) {
 
   private checkValidEditor() {
     if (this.editorContent.name == "") {
-      this.editorValidationError = "Preset name is empty";
+      this.editorValidationError = "预设名称不能为空";
       return;
     }
     let idx = this.presets.findIndex((p) => p.name == this.editorContent.name);
     if (idx >= 0 && idx != this.editorIndex) {
-      this.editorValidationError = "There is another preset with that name";
+      this.editorValidationError = "已经有另一个同名的预设";
       return;
     }
     idx = this.presets.findIndex((p) => arePresetsEqual(p, this.editorContent));
     if (idx >= 0 && idx != this.editorIndex) {
-      this.editorValidationError = `There is an identical preset: ${this.presets[idx].name}`;
+      this.editorValidationError = `有一个相同的预设: ${this.presets[idx].name}`;
       return;
     }
     this.editorValidationError = undefined;

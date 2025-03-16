@@ -778,7 +778,7 @@ export class RadioReceiverMain extends LitElement {
           return;
         } else if (error.type == RadioErrorType.NoUsbSupport) {
           alert(
-            "This browser does not support the HTML5 USB API. Please try Chrome, Edge, or Opera on a computer or Android."
+            "该浏览器不支持 HTML5 USB API。请在PC 电脑或 Android 手机上尝试使用 Chrome、Edge 或 Opera 浏览器。"
           );
         } else if (!this.errorState) {
           this.errorState = true;
