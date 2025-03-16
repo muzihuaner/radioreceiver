@@ -351,7 +351,7 @@ class Transfers {
       }
     } catch (e) {
       let error = new RadioError(
-        "Sample transfer was interrupted. Did you unplug your device?",
+        "采样传输被中断。您是否拔掉了设备？",
         RadioErrorType.UsbTransferError,
         { cause: e }
       );
