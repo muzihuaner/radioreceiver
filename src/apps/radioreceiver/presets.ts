@@ -386,7 +386,7 @@ export class RrPresets extends WindowDelegate(LitElement) {
     const index = this.getIndex(e);
     if (index === undefined) return;
     let preset = { ...this.presets[index] };
-    this.editorTitle = `Editing Preset "${preset.name}"`;
+    this.editorTitle = `编辑预设 "${preset.name}"`;
     this.editorIndex = index;
     this.editorContent = preset;
     this.checkValidEditor();

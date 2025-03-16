@@ -38,603 +38,385 @@
   </head>
 
   <body>
-    <h1 class="title">Radio Receiver</h1>
+    <h1 class="title">Radio Receiver 使用手册</h1>
     <p class="what">
-      An application to listen to radio transmissions from your browser using a
-      cheap RTL-SDR stick.
+      一个应用程序，用于通过浏览器使用便宜的RTL-SDR接收器收听无线电传输。
     </p>
 
     <div id="toc"></div>
 
-    <h1 id="what_is_this">What is Radio Receiver</h1>
+    <h1 id="what_is_this">什么是无线电接收器</h1>
     <p>
-      Radio Receiver is an HTML5 webpage that uses an RTL-SDR USB stick to
-      receive and digitize radio signals. Then, it demodulates those signals on
-      your computer and plays the resulting audio through your computer's
-      speakers or headphones.
+      无线电接收器是一个HTML5网页，它使用RTL-SDR USB接收器来接收和数字化无线电信号。然后，它在您的计算机上解调这些信号，并通过计算机的扬声器或耳机播放生成的音频。
     </p>
     <p>
-      Most RTL-SDR sticks let you receive signals in any frequency between 30
-      and 1700 MHz. This includes interesting radio bands like FM radio, marine
-      radio, air band (airplanes and airports), weather radio, amateur radio,
-      police and other emergency services, etc.
+      大多数RTL-SDR接收器允许您接收30至1700 MHz之间的任何频率的信号。这包括有趣的无线电频段，如FM广播、海事无线电、航空频段（飞机和机场）、天气广播、业余无线电、警察和其他紧急服务等。
     </p>
     <p>
-      You may also be able to listen to frequencies below 30 MHz using an
-      upconverter or some sticks' “direct sampling mode”. These frequencies
-      include AM radio, shortwave radio, HF amateur radio, and numbers stations,
-      among others.
+      您还可以使用上变频器或某些接收器的“直接采样模式”收听低于30 MHz的频率。这些频率包括AM广播、短波广播、HF业余无线电和数字电台等。
     </p>
     <p>
-      Radio Receiver can demodulate stereo FM, AM, narrowband FM, USB, LSB, and
-      CW. It has adjustable bandwidth filters so you can also listen to Morse
-      code transmissions or challenging, distant stations.
+      无线电接收器可以解调立体声FM、AM、窄带FM、USB、LSB和CW。它具有可调节的带宽滤波器，因此您还可以收听莫尔斯电码传输或具有挑战性的远距离电台。
     </p>
     <p>
-      Radio Receiver was written by
-      <a href="https://jacobo.tarrio.org/">Jacobo Tarrío</a>, and its source is
-      <a href="https://github.com/jtarrio/radioreceiver">available on GitHub</a
-      >.
+      无线电接收器由<a href="https://jacobo.tarrio.org/">Jacobo Tarrío</a>编写，其源代码<a href="https://github.com/jtarrio/radioreceiver">可在GitHub上获取</a>。
     </p>
 
-    <h1 id="compatibility">Compatible hardware and software</h1>
+    <h1 id="compatibility">兼容的硬件和软件</h1>
     <p>
-      Radio Receiver needs to run in a browser that supports the HTML5 USB API.
-      Generally, this means a Chromium based-browser (Chrome, Edge, Opera) on a
-      computer or on an Android device.
+      无线电接收器需要在支持HTML5 USB API的浏览器中运行。通常，这意味着在计算机或Android设备上使用基于Chromium的浏览器（如Chrome、Edge、Opera）。
       <script>
         if (navigator.usb)
           document.write(
-            "You are reading this in a compatible browser, " +
-              "so you can try Radio Receiver in this one."
+            "您当前使用的浏览器是兼容的，因此可以在此浏览器中尝试使用无线电接收器。"
           );
         else
           document.write(
-            "You are reading this in an incompatible browser, " +
-              "so you will need to try a different one to use Radio Receiver."
+            "您当前使用的浏览器不兼容，因此需要尝试其他浏览器以使用无线电接收器。"
           );
       </script>
     </p>
     <p>
-      Radio Receiver was written to work with an RTL-2832U-based receiver with a
-      R820 or R828 tuner chip (or compatible). In particular, the RTL-SDR Blog
-      V3 and V4 sticks are supported, but old R820 or R860-based sticks should
-      work too.
+      无线电接收器是为基于RTL-2832U的接收器编写的，并支持R820或R828调谐器芯片（或兼容芯片）。特别是，RTL-SDR Blog V3和V4接收器是受支持的，但基于旧版R820或R860的接收器也应该可以工作。
     </p>
     <p>
-      You may need to configure your computer to use an RTL-SDR stick if you use
-      Windows or Linux (MacOS, Android, and Chrome OS usually work out of the
-      box.)
+      如果您使用的是Windows或Linux系统，可能需要配置计算机以使用RTL-SDR接收器（MacOS、Android和Chrome OS通常开箱即用）。
     </p>
     <ul>
       <li>
-        For Windows, use the program
-        <a href="https://zadig.akeo.ie/">Zadig</a> to install a WinUSB driver.
+        对于Windows系统，请使用程序<a href="https://zadig.akeo.ie/">Zadig</a>安装WinUSB驱动程序。
       </li>
 
       <li>
-        For Linux, you may need to
-        <a href="https://ranous.wordpress.com/rtl-sdr4linux/"
-          >configure your system</a
-        >
-        to get raw USB access to the stick.
+        对于Linux系统，您可能需要<a href="https://ranous.wordpress.com/rtl-sdr4linux/">配置系统</a>以获取对接收器的原始USB访问权限。
       </li>
     </ul>
+    <h1 id="what_to_know">你需要了解的一些事情</h1>
 
-    <h1 id="what_to_know">Some things you need to know</h1>
-
-    <h2 id="how_sdr_works">How SDR works</h2>
+    <h2 id="how_sdr_works">SDR的工作原理</h2>
     <p>
-      Traditionally, radios were built entirely out of hardware components such
-      as oscillators, inductors, capacitors, transistors, etc., that were
-      selected and combined to receive and demodulate a particular type of
-      signal. Therefore, each type of signal required its own hardware, and
-      modifying a radio to receive a different signal could be hard or even
-      impossible.
+      传统上，无线电完全由硬件组件（如振荡器、电感器、电容器、晶体管等）构建，这些组件经过选择和组合以接收和解调特定类型的信号。因此，每种类型的信号都需要自己的硬件，而修改无线电以接收不同的信号可能会很困难，甚至是不可能的。
     </p>
     <p>
-      The modern approach to radio is “Software-Defined Radio” (SDR), in which
-      the hardware only receives and digitizes the signals, and then a computer
-      processes them with special software. SDR systems are flexible (changing
-      the signals they can receive can be as simple as changing their software)
-      and cheap, because the same hardware designs can be used for many
-      different types of radio signals.
+      现代无线电的方法是“软件定义无线电”（SDR），其中硬件仅接收并数字化信号，然后由计算机使用特殊软件处理这些信号。SDR系统非常灵活（改变它们可以接收的信号可能就像更改软件一样简单），而且价格便宜，因为相同的硬件设计可以用于许多不同类型的无线电信号。
     </p>
     <p>
-      Your RTL-SDR stick was designed as a European Digital TV receiver. It
-      contains a microprocessor that demodulates radio signals, extracts a video
-      stream, and sends it to your computer. However, it can be made to send the
-      signals to your computer instead of decoding them. Radio Receiver will
-      then receive those signals and demodulate them in your browser.
+      您的RTL-SDR接收器最初是作为欧洲数字电视接收器设计的。它包含一个微处理器，用于解调无线电信号、提取视频流并将其发送到您的计算机。然而，它可以被配置为将信号发送到您的计算机而不是解码它们。无线电接收器随后会在您的浏览器中接收这些信号并解调它们。
     </p>
 
-    <h2 id="frequency">Frequency, bandwidth, and sample rate</h2>
+    <h2 id="frequency">频率、带宽与采样率</h2>
     <p>
-      Your RTL-SDR stick works by tuning into a radio frequency, receiving radio
-      signals around that frequency, digitizing them, and sending them to your
-      computer.
+      您的RTL-SDR接收器通过调谐到某个无线电频率，接收该频率附近的无线电信号，将其数字化，然后发送到您的计算机。
     </p>
     <p>
-      Radio waves are electromagnetic fields that oscillate. The rate at which
-      they oscillate is called the “frequency”, which is measured in Hertz
-      (cycles per second.) Radio frequencies usually are in the thousands or
-      millions of Hertz, so we often use kilohertz (kHz) for thousands of Hertz,
-      or megahertz (MHz) for millions.
+      无线电波是振荡的电磁场。它们振荡的速率称为“频率”，以赫兹（Hz，每秒周期数）为单位。无线电频率通常在数千或数百万赫兹范围内，因此我们通常使用千赫兹（kHz）表示数千赫兹，或使用兆赫兹（MHz）表示数百万赫兹。
     </p>
     <p>
-      When you tune a receiver, you adjust it to receive a frequency. RTL-SDR
-      sticks don't only receive signals in the exact frequency they are tuned
-      into; instead they receive a “band” of frequencies. The difference between
-      the lowest and highest frequencies in that band is the “bandwidth”.
+      当您调谐接收器时，您会将其调整到接收某个频率。RTL-SDR接收器不仅接收其调谐到的确切频率的信号，还会接收一个“频段”内的信号。该频段中最低频率与最高频率之间的差值称为“带宽”。
     </p>
     <p>
-      “Digitizing” the signals in that frequency band means turning them into a
-      stream of numbers (digital “samples”) that can be processed by a program
-      running on a computer. The number of samples sent per second is the
-      “sample rate”.
+      将该频段内的信号“数字化”意味着将其转换为一串数字（数字“样本”），这些数字可以由计算机上运行的程序处理。每秒发送的样本数称为“采样率”。
     </p>
     <p>
-      The bandwidth and the sample rate are tied together: 1 sample per second
-      corresponds to 1 hertz of bandwidth. Therefore, more bandwidth lets you
-      “see” more signals at once but requires more computing power to deal with
-      a higher sample rate. Conversely, if you reduce the sample rate to use
-      less computing power, you will receive a smaller bandwidth.
+      带宽与采样率是紧密相关的：每秒1个样本对应1赫兹的带宽。因此，更大的带宽可以让您同时“看到”更多的信号，但需要更多的计算能力来处理更高的采样率。相反，如果您降低采样率以减少计算资源的使用，您将接收到更小的带宽。
+    </p>
+    <h2 id="modulation">调制</h2>
+    <p>
+      信号需要通过无线电传输时需要进行“调制”。这种调制是一种根据信号内容修改无线电波的方案。接收器随后可以“解调”接收到的无线电波以提取原始信号。
+    </p>
+    <p>
+      有许多调制方案。您可能听说过FM和AM，它们分别代表“频率调制”和“幅度调制”，但还有许多其他方案。无线电接收器可以解调商业FM和AM，还可以解调窄带FM（用于双向无线电和天气广播）、USB和LSB（用于业余无线电）以及CW（用于摩尔斯电码）。
     </p>
 
-    <h2 id="modulation">Modulation</h2>
+    <h2 id="decibels">分贝</h2>
     <p>
-      Signals need to be “modulated” to be transmitted through the radio. This
-      modulation is a scheme to modify the radio waves according to the content
-      of the signal. The receiver can then “demodulate” the received radio waves
-      to extract the original signal.
+      无线电信号的功率以分贝（dB）表示。分贝不是像米、磅、升或英亩这样的度量单位：没有“一个分贝有多大”的概念。相反，它们是用于比较的单位。
     </p>
     <p>
-      There are many modulation schemes. You have probably heard of FM and AM,
-      which stand for “frequency modulation” and “amplitude modulation”, but
-      there are many others. Radio Receiver can demodulate commercial FM and AM,
-      and also narrowband FM (used in 2-way radios and weather radio), USB and
-      LSB (used in amateur radio), and CW (used for Morse code.)
-    </p>
-
-    <h2 id="decibels">Decibels</h2>
-    <p>
-      The power of a radio signal is indicated in decibels (dB). Decibels are
-      not units of measure like meters, pounds, liters, or acres: there is no
-      “how big is a decibel.” Instead, they are units of comparison.
+      当工程师比较两个信号的功率时，他们并不关心一个信号是否比另一个信号强一点点。他们想知道的是它是否强两倍、10倍、五百万倍、十亿分之一等等。
     </p>
     <p>
-      When engineers compare the power of two signals, they don't care if one is
-      a little bit stronger than the other. They want to know if it's twice as
-      strong, 10 times as strong, five million times as strong, one billionth
-      the strength, and so on.
+      分贝让我们避免使用如此大的数字，通过告诉我们需要将参考信号乘以（或除以）多少次才能达到我们测量的信号的强度。
     </p>
     <p>
-      Decibels let us avoid having to use such big numbers by letting us know
-      how many times we would have to multiply (or divide) our reference signal
-      to be as strong as the signal we're measuring.
+      有一个精确的公式，但普通人无法在脑海中计算对数，因此有一个经验法则：从0 dB开始；每次将功率加倍时，增加3 dB；每次将功率乘以10时，增加10 dB。相反，如果除以2或10，则减去3或10 dB。
     </p>
     <p>
-      There is an exact formula, but normal people cannot do logarithms in their
-      heads, so there is also a rule of thumb: you start with 0 dB; every time
-      you double the power, you add 3 dB, and every time you multiply it by 10,
-      you add 10 dB. Conversely, if you divide by 2 or 10, you subtract 3 or 10
-      dB.
+      因此，比参考信号强两倍的信号是3 dB；强10倍的信号是10 dB；强一千倍的信号是30 dB（乘以10三次）；强五百万倍的信号是67 dB（乘以10七次然后除以2）；十亿分之一是-90 dB（除以10九次）。
+    </p>
+    <h2 id="upconverters">上变频器与直接采样</h2>
+    <p>
+      RTL-SDR接收器设计用于接收30至1700 MHz之间的信号。然而，30 MHz以下有许多有趣的信号（如AM广播、短波广播、大量业余无线电等），因此人们提出了几种方法来使用RTL-SDR接收这些频率。
     </p>
     <p>
-      So a signal twice as strong as the reference is 3 dB; 10 times as strong,
-      10 dB; one thousand times as strong, 30 dB (multiply by 10 three times); 5
-      million times as strong, 67 dB (multiply by 10 seven times then divide by
-      2), and one billionth is -90 dB (divide by 10 nine times.)
+      一种方法是使用“上变频器”：一种将信号频率提高到RTL-SDR接收器可接收范围的设备。一些接收器集成了上变频器，而其他上变频器是外部设备。
+    </p>
+    <p>
+      另一种方法是使用“直接采样模式”：对接收器进行修改，绕过调谐芯片，使采样芯片直接接收无线电信号。
+    </p>
+    <p>
+      无线电接收器支持具有直接采样模式的接收器以及带有内部上变频器的RTL-SDR Blog V4。它还支持外部上变频器，并提供一个选项，可根据调谐频率自动打开或关闭上变频器的偏置T（如果存在）。
     </p>
 
-    <h2 id="upconverters">Upconverters and direct sampling</h2>
-    <p>
-      RTL-SDR sticks are designed to receive signals between 30 and 1700 MHz.
-      However, there are many interesting signals below 30 MHz (AM radio,
-      shortwave radio, lots of amateur radio, etc.) so people have come up with
-      several ways to receive those frequencies with RTL-SDR.
-    </p>
-    <p>
-      One way to do it is by using an “upconverter”: a device that raises the
-      frequency of signals to put them in the range that RTL-SDR sticks can
-      receive. Some sticks have an integrated upconverter, while other
-      upconverters are external devices.
-    </p>
-    <p>
-      Another way is to use “direct sampling mode”: a modification to the sticks
-      by which the tuner chip is bypassed so the sampler chip receives the radio
-      signals directly.
-    </p>
-    <p>
-      Radio Receiver supports sticks that have direct sampling mode and the
-      RTL-SDR Blog V4 with its internal upconverter. It also supports external
-      upconverters, with an option to use the bias T, if present, to turn the
-      upconverter on and off automatically depending on the tuned frequency.
-    </p>
+    <h1 id="how_to_use">如何使用无线电接收器</h1>
 
-    <h1 id="how_to_use">How to use Radio Receiver</h1>
-
-    <h2 id="main_display">The main display</h2>
+    <h2 id="main_display">主界面</h2>
     <p>
-      The main Radio Receiver display appears below, showing a few simulated
-      radio signals to better illustrate how it works.
+      无线电接收器的主界面如下所示，显示了一些模拟的无线电信号以更好地说明其工作原理。
     </p>
 
     <rr-demo-spectrum></rr-demo-spectrum>
 
     <p>
-      The main parts of this display are, from top to bottom: the spectrum
-      scope, the waterfall, and the bottom bar.
+      该界面的主要部分从上到下依次为：频谱仪、瀑布图和底部栏。
     </p>
 
-    <h3 id="spectrum_scope">The spectrum scope</h3>
+    <h3 id="spectrum_scope">频谱仪</h3>
     <p>
-      The spectrum scope represents the frequency band that Radio Receiver is
-      tuned into. The lowest frequency is in the left and the highest frequency
-      is in the right, and the scale at the top shows which frequency
-      corresponds to each part of the scope.
+      频谱仪表示无线电接收器调谐到的频段。最低频率在左侧，最高频率在右侧，顶部的刻度显示了每个部分对应的频率。
     </p>
 
     <rr-demo-scope></rr-demo-scope>
 
     <p>
-      The yellow line “dancing” in the scope shows how much signal power is
-      present on each frequency: the higher it goes, the more power there is. On
-      the left, a decibel scale lets you gauge the amount of power. 0 dB is the
-      maximum power that Radio Receiver can process, so all the numbers in the
-      scale are negative.
+      频谱仪中“舞动”的黄线显示了每个频率上的信号功率：线越高，功率越大。左侧的分贝刻度可帮助您测量功率大小。0 dB是无线电接收器可以处理的最大功率，因此刻度上的所有数字均为负数。
     </p>
     <p>
-      In the figure above, you can see some strong signals on 93.5, 93.9, and
-      94.3 MHz, and a weak one on 94.1.
+      在上图中，您可以看到93.5、93.9和94.3 MHz上有一些强信号，而94.1 MHz上有一个弱信号。
     </p>
 
-    <h3>The waterfall</h3>
+    <h3>瀑布图</h3>
     <p>
-      The spectrum scope shows you the signals that are being received right
-      now, but the waterfall lets you see what signals were received in the
-      past.
+      频谱仪显示当前接收到的信号，而瀑布图则可以让您查看过去接收到的信号。
     </p>
 
     <rr-demo-waterfall></rr-demo-waterfall>
 
     <p>
-      The waterfall scrolls down slowly, showing more recent signals at the top
-      and less recent ones on the bottom. On each line, each pixel corresponds
-      to a frequency and takes a brighter color if there is a strong signal in
-      it.
+      瀑布图缓慢向下滚动，顶部显示较新的信号，底部显示较旧的信号。在每一行中，每个像素对应一个频率，如果该频率上有强信号，则像素会显示更亮的颜色。
     </p>
     <p>
-      With the waterfall, you can see if there are regular transmissions on
-      neighboring frequencies, how wide they are, how often they repeat, and
-      more important information. With enough practice, you can even tell what
-      type of transmission it is!
+      通过瀑布图，您可以查看邻近频率上是否有定期传输、它们的宽度、重复频率以及其他重要信息。通过足够的练习，您甚至可以判断出传输的类型！
     </p>
 
-    <h3>The bottom bar</h3>
+    <h3>底部栏</h3>
     <p>
-      The bottom bar lets you adjust the decibel range for the spectrum scope
-      and waterfall, and also lets you zoom in and out of a particular frequency
-      range.
+      底部栏允许您调整频谱仪和瀑布图的分贝范围，还可以放大或缩小特定频率范围。
     </p>
 
     <rr-demo-bottombar></rr-demo-bottombar>
-
     <p>
-      The
       <script>
         const isHighBottombar =
           document.getElementsByTagName("rr-demo-bottombar")[0].offsetHeight >
           24;
-        if (isHighBottombar) document.write("top half");
-        else document.write("left side");
+        if (isHighBottombar) document.write("上半部分");
+        else document.write("左侧");
       </script>
-      contains the decibel range adjustment controls, which consists of two
-      numbers separated by a “rainbow”. You can change the numbers directly, or
-      you can drag the two sliders that appear on either side of the rainbow. As
-      you do so, you will see changes in the decibel scale in the spectrum
-      scope, and the new lines in the waterfall will change their colors.
+      包含分贝范围调整控件，由两个数字和一个“彩虹”分隔组成。您可以直接更改数字，也可以拖动彩虹两侧的滑块。当您进行调整时，您会看到频谱仪中的分贝刻度发生变化，瀑布图中的新线条也会改变颜色。
     </p>
     <p>
-      The
       <script>
-        if (isHighBottombar) document.write("left side of the bottom half");
-        else document.write("middle of the bar");
+        if (isHighBottombar) document.write("下半部分的左侧");
+        else document.write("栏的中间部分");
       </script>
-      contains the zoom controls, which contain two “magnifier glass” buttons
-      with a number in between. The “zoom in“ button
-      <rr-demo-button name="zoom-in"></rr-demo-button> increases the
-      magnification level, while the “zoom out” button
-      <rr-demo-button name="zoom-out"></rr-demo-button> decreases it. The
-      current magnification level is shown between the buttons; you can edit it
-      directly if you prefer.
+      包含缩放控件，其中有两个“放大镜”按钮，中间有一个数字。“放大”按钮
+      <rr-demo-button name="zoom-in"></rr-demo-button> 增加放大级别，而“缩小”按钮
+      <rr-demo-button name="zoom-out"></rr-demo-button> 则减小放大级别。当前放大级别显示在按钮之间；如果您愿意，可以直接编辑它。
     </p>
     <p>
-      The
       <script>
-        if (isHighBottombar) document.write("right side of the bottom half");
-        else document.write("right side of the bar");
+        if (isHighBottombar) document.write("下半部分的右侧");
+        else document.write("栏的右侧");
       </script>
-      contains a scrollbar that you can use to move around the spectrum when you
-      are zoomed in. This works like a classic Windows scrollbar: click on the
-      arrow buttons <rr-demo-button name="scroll-left"></rr-demo-button
-      ><rr-demo-button name="scroll-right"></rr-demo-button> to scroll a little,
-      click between the slider and the button to scroll one page, and drag the
-      slider from side to side to scroll freely.
+      包含一个滚动条，您可以在放大时使用它来移动频谱。它的工作方式类似于经典的Windows滚动条：点击箭头按钮 <rr-demo-button name="scroll-left"></rr-demo-button
+      ><rr-demo-button name="scroll-right"></rr-demo-button> 进行小幅滚动，点击滑块和按钮之间的区域滚动一页，拖动滑块左右移动以自由滚动。
     </p>
 
-    <h2 id="main_controls">The main controls</h2>
+    <h2 id="main_controls">主控件</h2>
     <p>
-      The main Radio Receiver controls are shown below. They let you tune into a
-      different frequency, change the signal demodulation parameters, and adjust
-      the gain for your receiver.
+      无线电接收器的主控件如下所示。它们允许您调谐到不同的频率，更改信号解调参数，并调整接收器的增益。
     </p>
 
     <rr-demo-controls></rr-demo-controls>
 
-    <h3>Play/stop/settings</h3>
+    <h3>播放/停止/设置</h3>
 
     <p>
-      Press the “play“ button <rr-demo-button name="play"></rr-demo-button> to
-      start listening to the radio. When the radio is playing, the “play” button
-      becomes the “stop” button <rr-demo-button name="stop"></rr-demo-button>,
-      which you can press to stop listening.
+      按下“播放”按钮 <rr-demo-button name="play"></rr-demo-button> 开始收听广播。当广播正在播放时，“播放”按钮会变为“停止”按钮 <rr-demo-button name="stop"></rr-demo-button>，您可以按下它来停止收听。
     </p>
 
     <p>
-      Press the “presets” button
-      <rr-demo-button name="presets"></rr-demo-button> to open the
-      <a href="#presets">presets window</a>, and the “settings” button
-      <rr-demo-button name="settings"></rr-demo-button> to open the
-      <a href="#settings">settings window</a>.
+      按下“预设”按钮
+      <rr-demo-button name="presets"></rr-demo-button> 打开
+      <a href="#presets">预设窗口</a>，按下“设置”按钮
+      <rr-demo-button name="settings"></rr-demo-button> 打开
+      <a href="#settings">设置窗口</a>。
     </p>
 
-    <h3>Tuning</h3>
+    <h3>调谐</h3>
     <p>
-      You have two frequencies to play with in Radio Receiver: the “center
-      frequency” and the “tuning frequency”.
+      在无线电接收器中，您可以调整两个频率：“中心频率”和“调谐频率”。
     </p>
     <p>
-      The center frequency determines the frequency band that you'll receive
-      with your RTL-SDR stick. It is always the frequency in the center of your
-      spectrum scope and waterfall.
+      中心频率决定了您将通过RTL-SDR接收器接收的频段。它始终是频谱仪和瀑布图中心的频率。
     </p>
     <p>
-      The tuning frequency is the frequency within the received band that
-      contains the signal you want to listen to.
+      调谐频率是接收频段内包含您想要收听的信号的频率。
     </p>
     <p>
-      To change either frequency, type it in the corresponding box. On the
-      right, you can select the unit you'd like to use (Hz, kHz, or MHz); this
-      unit is also used in the spectrum display.
+      要更改任一频率，请在相应的框中输入频率。在右侧，您可以选择要使用的单位（Hz、kHz或MHz）；此单位也用于频谱显示。
     </p>
     <p>
-      In general, you can change the center or tuning frequency without changing
-      the other, as long as the tuning frequency is within the frequency band in
-      the spectrum scope. If it would fall outside of the band, the frequency
-      you didn't change will be modified so that you can use the frequency you
-      selected.
+      通常，只要调谐频率在频谱仪的频段内，您可以更改中心频率或调谐频率而不影响另一个。如果调谐频率超出频段范围，未更改的频率将被调整，以便您可以使用所选的频率。
     </p>
     <p>
-      For example: if your center frequency is 93.9 with a 1 MHz-wide band and
-      you set the tuning frequency to 94.1, the center frequency will stay at
-      93.9. However, if you change the tuning frequency to 88.3, the center
-      frequency will also be changed to 88.3 so that your selected tuning
-      frequency works.
+      例如：如果您的中心频率为93.9 MHz，带宽为1 MHz，而您将调谐频率设置为94.1 MHz，则中心频率将保持在93.9 MHz。但是，如果您将调谐频率更改为88.3 MHz，中心频率也将更改为88.3 MHz，以确保您选择的调谐频率有效。
     </p>
     <p>
-      The “tuning step” is most useful with the display controls, so it will be
-      described with them.
+      “调谐步进”在显示控件中最为有用，因此将在相关部分进行描述。
     </p>
 
-    <h3>Modulation</h3>
+    <h3>调制</h3>
     <p>
-      The next line lets you select a modulation scheme for the signal. You can
-      choose between wideband FM (WBFM, used in commercial radio), narrowband FM
-      (NBFM), AM, upper sideband (USB), lower sideband (LSB), and continuous
-      wave (CW). You need to match the modulation scheme to the signal you are
-      receiving; otherwise, you'll only hear noise or gibberish.
+      下一行允许您为信号选择调制方案。您可以选择宽带FM（WBFM，用于商业广播）、窄带FM（NBFM）、AM、上边带（USB）、下边带（LSB）和连续波（CW）。您需要将调制方案与接收的信号匹配；否则，您只会听到噪音或杂音。
     </p>
 
     <rr-demo-controls scheme="AM"></rr-demo-controls>
 
     <p>
-      You can also select a bandwidth for all schemes except WBFM. You generally
-      need to match the bandwidth to the received signal, but you may sometimes
-      need to use a reduced bandwidth if there are interfering signals near the
-      one you are interested in.
+      除了WBFM外，您还可以为所有方案选择带宽。通常，您需要将带宽与接收的信号匹配，但有时如果附近有干扰信号，您可能需要使用较小的带宽。
     </p>
     <p>
-      The squelch control mutes the radio automatically when there isn't a
-      signal. This lets you monitor a channel that's used infrequently without
-      having to hear noise all the time. By setting the value of the squelch
-      control, you decide how strong the signal needs to be to unmute your
-      radio.
+      静噪控制在没有信号时自动静音。这使您可以监控不常使用的频道，而不必一直听到噪音。通过设置静噪控制的值，您可以决定信号需要多强才能解除静音。
     </p>
     <p>
-      For WBFM, you can enable and disable stereo reception. When stereo
-      reception is enabled, the stereo indicator will turn green whenever a
-      stereo signal is detected, or grey otherwise.
+      对于WBFM，您可以启用或禁用立体声接收。当启用立体声接收时，检测到立体声信号时，立体声指示灯将变为绿色，否则为灰色。
     </p>
 
-    <h3>Tuner gain</h3>
+    <h3>调谐器增益</h3>
     <p>
-      Your RTL-SDR stick has an amplification circuit to boost the power of
-      received signals. Its amplification level (“gain”) can be controlled
-      automatically (“auto gain”) or manually through the main controls.
+      您的RTL-SDR接收器有一个放大电路来增强接收信号的功率。其放大级别（“增益”）可以自动控制（“自动增益”）或通过主控件手动控制。
     </p>
     <p>
-      (When the RTL-SDR stick is in “direct sampling mode”, only automatic gain
-      control is available.)
+      （当RTL-SDR接收器处于“直接采样模式”时，只有自动增益控制可用。）
     </p>
     <p>
-      It is very useful to control the gain manually, but it has to be done
-      judiciously. There is such a thing as “too much gain”. The recommendation
-      is to have enough gain that you can receive your signal well, but not
-      enough to raise the noise floor. This is how you do it:
+      手动控制增益非常有用，但必须谨慎操作。增益过高会导致问题。建议将增益调整到足以良好接收信号，但不要高到提升噪声底限。具体操作如下：
     </p>
     <p>
-      First, uncheck “auto gain” and move the gain slider all the way to the
-      left to set it to the minimum value. Adjust the decibel range in the
-      spectrum scope so that the yellow line appears at the bottom.
+      首先，取消选中“自动增益”并将增益滑块一直向左移动以将其设置为最小值。调整频谱仪中的分贝范围，使黄线出现在底部。
     </p>
     <p>
-      Now, increase the gain slowly while you watch the spectrum scope. You
-      should see some signals rise while the rest of the line stays at the
-      bottom. At some point, the whole yellow line will start to go up; that's
-      when you stop increasing the gain.
+      现在，慢慢增加增益，同时观察频谱仪。您应该会看到一些信号上升，而其余部分保持在底部。当整个黄线开始上升时，停止增加增益。
     </p>
     <p>
-      At this point, you'll have the best signal-to-noise ratio with the minimum
-      amount of noise. If you kept increasing the gain, the signal level would
-      go up but the noise would also rise with it. At some point, the noise
-      would be so loud that it would swamp the demodulation algorithms, making
-      the demodulated audio sound worse.
+      此时，您将以最小的噪声获得最佳的信噪比。如果继续增加增益，信号电平会上升，但噪声也会随之增加。最终，噪声会大到淹没解调算法，使解调后的音频听起来更差。
     </p>
 
-    <h2 id="display_controls">The display controls</h2>
+    <h2 id="display_controls">显示控件</h2>
     <p>
-      There is a second set of controls available on the spectrum display, which
-      you can manipulate by clicking and dragging with the mouse or touch
-      screen.
+      频谱显示上还有第二组控件，您可以通过鼠标或触摸屏点击和拖动来操作。
     </p>
 
     <rr-demo-highlight></rr-demo-highlight>
 
-    <h3>Changing the tuned frequency</h3>
+    <h3>更改调谐频率</h3>
 
     <p>
-      You can see a yellow vertical line surrounded by a highlighted area on top
-      of the current tuned frequency. The yellow line indicates the frequency,
-      and the white area indicates the modulation bandwidth.
+      您可以看到一条黄色垂直线，周围有一个高亮区域，位于当前调谐频率上方。黄线表示频率，白色区域表示调制带宽。
     </p>
     <p>
-      You can change the tuned frequency by dragging the yellow line to the left
-      and right with your mouse, or with your finger on touch screens.
+      您可以通过鼠标拖动黄线左右移动来更改调谐频率，或在触摸屏上用手指拖动。
     </p>
     <p>
-      You can also modify the bandwidth by dragging the edge of the white area
-      to the left or right with your mouse or finger. (This does not work with
-      WBFM because it uses a fixed bandwidth.)
+      您还可以通过鼠标或手指拖动白色区域的边缘来调整带宽。（这不适用于WBFM，因为它使用固定带宽。）
     </p>
     <p>
-      Another way to change the tuned frequency is by clicking or tapping on a
-      point on the screen that corresponds to the frequency you wish to tune
-      into.
+      另一种更改调谐频率的方法是点击或点击屏幕上与您希望调谐到的频率对应的点。
     </p>
     <p>
-      When you change the frequency by clicking or dragging, the frequency is
-      always changed in increments of the “tuning step”, which can be set in the
-      main controls window. This makes it easier to change frequencies
-      accurately.
+      当您通过点击或拖动更改频率时，频率始终以“调谐步进”为单位变化，该步进可以在主控件窗口中设置。这使得准确更改频率更加容易。
     </p>
 
-    <h3>Changing the center frequency</h3>
+    <h3>更改中心频率</h3>
     <p>
-      You can change the center frequency by clicking and dragging the waterfall
-      from side to side. The center frequency will change in increments of the
-      selected frequency unit (Hz, kHz, or MHz.)
+      您可以通过点击并拖动瀑布图左右移动来更改中心频率。中心频率将以所选频率单位（Hz、kHz或MHz）为单位变化。
     </p>
 
-    <h2 id="presets">The presets window</h2>
+    <h2 id="presets">预设窗口</h2>
 
     <rr-demo-presets></rr-demo-presets>
 
     <p>
-      You can open the presets window by clicking the presets button
-      <rr-demo-button name="presets"></rr-demo-button> in the main controls
-      window.
+      您可以通过点击主控件窗口中的预设按钮
+      <rr-demo-button name="presets"></rr-demo-button> 打开预设窗口。
     </p>
 
     <p>
-      This window shows a list of saved stations and frequencies with their
-      names and modulation scheme. Click on any of them to switch to it.
+      该窗口显示已保存的电台和频率列表及其名称和调制方案。点击其中任何一个以切换到它。
     </p>
 
     <p>
-      Use the “add” button <rr-demo-button name="add"></rr-demo-button> to add
-      the currently-tuned station to the presets list. Click on the “edit”
-      <rr-demo-icon name="edit"></rr-demo-icon> and “delete”
-      <rr-demo-icon name="delete"></rr-demo-icon> icons in each row to edit and
-      delete that row, respectively.
+      使用“添加”按钮 <rr-demo-button name="add"></rr-demo-button> 将当前调谐的电台添加到预设列表中。点击每行中的“编辑”
+      <rr-demo-icon name="edit"></rr-demo-icon> 和“删除”
+      <rr-demo-icon name="delete"></rr-demo-icon> 图标分别编辑和删除该行。
     </p>
 
     <p>
-      Click on the table headings (“Name”, “Frequency”, and “Mode”) to sort the
-      table by the values in that column. If you click again in the same
-      heading, the ordering will flip between first-to-last and last-to-first.
+      点击表头（“名称”、“频率”和“模式”）以按该列中的值对表格进行排序。如果您再次点击同一表头，排序将在从前往后和从后往前之间切换。
     </p>
 
     <p>
-      You can resize the presets window by dragging the lines on the right and
-      bottom edges of the window, or the double arrow on the bottom right
-      corner. In this way, you can have it always open where it doesn't get in
-      the way.
+      您可以通过拖动窗口右侧和底部的线条或右下角的双箭头来调整预设窗口的大小。这样，您可以将其始终打开在不妨碍操作的位置。
     </p>
 
-    <h2 id="settings">The settings window</h2>
+    <h2 id="settings">设置窗口</h2>
 
     <rr-demo-settings></rr-demo-settings>
 
     <p>
-      You can open the settings window by clicking the “settings” button
-      <rr-demo-button name="settings"></rr-demo-button> in the main controls
-      window.
+      您可以通过点击主控件窗口中的“设置”按钮
+      <rr-demo-button name="settings"></rr-demo-button> 打开设置窗口。
     </p>
 
     <p>
-      The “sample rate” setting lets you change the RTL-SDR stick's sample rate;
-      that is the number of samples it captures per second. Note that, as you
-      change the sample rate, the bandwidth that is visible in the spectrum
-      display also changes (see the “<a href="#frequency"
-        >frequency, bandwidth, and sample rate</a
-      >” section for more information.)
+      “采样率”设置允许您更改RTL-SDR接收器的采样率；即每秒捕获的样本数。请注意，当您更改采样率时，频谱显示中可见的带宽也会发生变化（有关更多信息，请参阅“<a href="#frequency"
+        >频率、带宽和采样率</a
+      >”部分）。
     </p>
 
     <p>
-      The “PPM correction” setting lets you make adjustments if your RTL-SDR
-      stick is not exactly on frequency. By changing the value (which represents
-      the frequency drift, in parts per million), you can make the RTL-SDR stick
-      tune a little bit higher or lower until it's just right.
+      “PPM校正”设置允许您在RTL-SDR接收器频率不准确时进行调整。通过更改该值（表示频率漂移，单位为百万分之一），您可以使RTL-SDR接收器稍微调高或调低，直到准确为止。
     </p>
 
     <p>
-      The “FFT size” setting lets you change the resolution of the spectrum
-      display. Higher values result in more detailed spectra, at the cost of
-      more processing power.
+      “FFT大小”设置允许您更改频谱显示的分辨率。较高的值会导致更详细的频谱，但会消耗更多的处理能力。
     </p>
 
     <p>
-      The “bias T” is a circuit that exists in some RTL-SDR sticks, which can
-      power an external device through the antenna connection. When you check
-      this setting, you enable the bias T in your stick, if it has one.
+      “偏置T”是某些RTL-SDR接收器中的电路，可以通过天线连接为外部设备供电。当您选中此设置时，如果您的接收器有偏置T，则会启用它。
     </p>
 
     <p>
-      The “0-29MHz method” setting lets you select what Radio Receiver will do
-      when you try to tune into a frequency lower than 28.8 MHz:
+      “0-29MHz方法”设置允许您选择当您尝试调谐到低于28.8 MHz的频率时，无线电接收器将执行的操作：
     </p>
     <ul>
       <li>
-        The “default method” setting tries to use the stick's internal
-        upconverter, if it has one.
+        “默认方法”设置尝试使用接收器的内部上变频器（如果有）。
       </li>
       <li>
-        The “direct sampling” method enables the stick's direct sampling mode,
-        if available. You can select the variant of direct sampling that your
-        stick uses through the “direct sampling channel” setting.
+        “直接采样”方法启用接收器的直接采样模式（如果可用）。您可以通过“直接采样通道”设置选择接收器使用的直接采样变体。
       </li>
       <li>
-        The “external upconverter” method makes the stick tune into the
-        upconverter's frequency range. The “use bias T for upconverter” lets you
-        turn the upconverter on automatically if it's powered by your stick's
-        bias T.
+        “外部上变频器”方法使接收器调谐到上变频器的频率范围。“使用偏置T为上变频器供电”设置允许您自动打开上变频器（如果它由接收器的偏置T供电）。
       </li>
     </ul>
     <p>
-      (Note that the “direct sampling” setting has no effect on RTL-SDR Blog V4
-      sticks. Those will always use the default method or the external
-      upconverter.)
+      （请注意，“直接采样”设置对RTL-SDR Blog V4接收器无效。这些接收器将始终使用默认方法或外部上变频器。）
     </p>
-  </body>
+
+
+    <b>本网页由<a href="https://github.com/muzihuaner"> 木子欢儿 </a>翻译汉化</b>
+     </body>
 </html>

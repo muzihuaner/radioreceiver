@@ -783,7 +783,7 @@ export class RadioReceiverMain extends LitElement {
         } else if (!this.errorState) {
           this.errorState = true;
           if (error.cause) {
-            alert(`${error.message}\n\nCaused by: ${error.cause}`);
+            alert(`${error.message}\n\n由: ${error.cause}导致`);
           } else {
             alert(error.message);
           }
