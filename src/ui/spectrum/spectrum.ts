@@ -4,18 +4,21 @@ import {
   DefaultFftSize,
   DefaultMaxDecibels,
   DefaultMinDecibels,
-} from "./constants";
-import { SpectrumDecibelRangeChangedEvent, SpectrumZoomEvent } from "./events";
-import { RrScope } from "./scope";
-import { type GridSelection } from "./types";
-import { RrWaterfall } from "./waterfall";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
-import "./decibel-range";
-import "./highlight";
-import "./scope";
-import "./scrollbar";
-import "./waterfall";
-import "./zoombar";
+} from "./constants.js";
+import {
+  SpectrumDecibelRangeChangedEvent,
+  SpectrumZoomEvent,
+} from "./events.js";
+import { RrScope } from "./scope.js";
+import { type GridSelection } from "./types.js";
+import { RrWaterfall } from "./waterfall.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
+import "./decibel-range.js";
+import "./highlight.js";
+import "./scope.js";
+import "./scrollbar.js";
+import "./waterfall.js";
+import "./zoombar.js";
 
 @customElement("rr-spectrum")
 export class RrSpectrum extends LitElement {

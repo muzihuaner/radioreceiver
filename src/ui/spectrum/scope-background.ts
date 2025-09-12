@@ -4,9 +4,9 @@ import {
   DefaultMinDecibels,
   DefaultMaxDecibels,
   DefaultFftSize,
-} from "./constants";
-import { Mapping } from "../coordinates/mapping";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
+} from "./constants.js";
+import { Mapping } from "../coordinates/mapping.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
 
 @customElement("rr-scope-background")
 export class RrScopeBackground extends LitElement {

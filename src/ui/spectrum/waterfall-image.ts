@@ -1,6 +1,6 @@
-import { Mapping } from "../coordinates/mapping";
-import { Zoom } from "../coordinates/zoom";
-import { DefaultCubeHelix, Palette } from "./palette";
+import { Mapping } from "../coordinates/mapping.js";
+import { Zoom } from "../coordinates/zoom.js";
+import { DefaultCubeHelix, Palette } from "./palette.js";
 
 /**
  * A class that manages the waterfall image.
@@ -102,7 +102,7 @@ class Image {
   }
 
   readonly height: number;
-  private data: Uint8ClampedArray;
+  private data: ImageDataArray;
   private xOffset: number;
   private yOffset: number;
   private scrollError: number = 0;

@@ -1,11 +1,11 @@
 import { css, html, LitElement, nothing, PropertyValues } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
-import { modeParameters, type Scheme } from "@jtarrio/webrtlsdr/demod/modes";
-import { RrWindow, WindowDelegate } from "../../ui/controls/window";
-import * as Icons from "../../ui/icons";
-import { BaseStyle } from "../../ui/styles";
-import "../../ui/controls/frequency-input";
-import "../../ui/controls/window";
+import { modeParameters } from "@jtarrio/webrtlsdr/demod/modes.js";
+import { RrWindow, WindowDelegate } from "../../ui/controls/window.js";
+import * as Icons from "../../ui/icons.js";
+import { BaseStyle } from "../../ui/styles.js";
+import "../../ui/controls/frequency-input.js";
+import "../../ui/controls/window.js";
 
 @customElement("rr-presets")
 export class RrPresets extends WindowDelegate(LitElement) {
@@ -244,7 +244,7 @@ export class RrPresets extends WindowDelegate(LitElement) {
   @property({ attribute: false }) tunedFrequency: number = 88500000;
   @property({ attribute: false }) scale: number = 1000;
   @property({ attribute: false }) tuningStep: number = 1000;
-  @property({ attribute: false }) scheme: Scheme = "WBFM";
+  @property({ attribute: false }) scheme: string = "WBFM";
   @property({ attribute: false }) bandwidth: number = 150000;
   @property({ attribute: false }) stereo: boolean = true;
   @property({ attribute: false }) squelch: number = 0;
@@ -473,7 +473,7 @@ export type Preset = {
   tunedFrequency: number;
   scale: number;
   tuningStep: number;
-  scheme: Scheme;
+  scheme: string;
   bandwidth: number;
   stereo: boolean;
   squelch: number;

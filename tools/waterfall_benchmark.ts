@@ -1,8 +1,8 @@
 import { css, html, LitElement, nothing } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
-import { FFT } from "@jtarrio/webrtlsdr/dsp/fft";
-import { RrWaterfall } from "../src/ui/spectrum/waterfall";
-import "../src/ui/spectrum/waterfall";
+import { FFT } from "@jtarrio/webrtlsdr/dsp/fft.js";
+import { RrWaterfall } from "../src/ui/spectrum/waterfall.js";
+import "../src/ui/spectrum/waterfall.js";
 
 @customElement("waterfall-benchmark")
 class WaterfallBenchmark extends LitElement {

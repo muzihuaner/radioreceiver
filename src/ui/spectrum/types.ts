@@ -1,4 +1,4 @@
-import { WidthFraction } from "../coordinates/types";
+import { WidthFraction } from "../coordinates/types.js";
 
 /** Selected frequency range. */
 export type GridSelection = {

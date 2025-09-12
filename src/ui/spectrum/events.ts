@@ -1,4 +1,4 @@
-import { Zoom } from "../coordinates/zoom";
+import { Zoom } from "../coordinates/zoom.js";
 
 export type SpectrumTarget = "scope" | "waterfall";
 

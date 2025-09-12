@@ -7,7 +7,7 @@ import {
   modeParameters,
   type Mode,
   type Demod,
-} from "@jtarrio/webrtlsdr/demod/modes";
+} from "@jtarrio/webrtlsdr/demod/modes.js";
 
 @customElement("demod-benchmark")
 class DemodBenchmark extends LitElement {

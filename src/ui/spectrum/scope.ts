@@ -1,10 +1,14 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { DefaultMinDecibels, DefaultMaxDecibels, DefaultFftSize } from "./constants";
-import { RrScopeLine } from "./scope-line";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
-import "./scope-background";
-import "./scope-line";
+import {
+  DefaultMinDecibels,
+  DefaultMaxDecibels,
+  DefaultFftSize,
+} from "./constants.js";
+import { RrScopeLine } from "./scope-line.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
+import "./scope-background.js";
+import "./scope-line.js";
 
 @customElement("rr-scope")
 export class RrScope extends LitElement {

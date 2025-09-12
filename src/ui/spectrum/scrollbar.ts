@@ -1,11 +1,11 @@
 import { css, html, LitElement, PropertyValues } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { SpectrumZoomEvent } from "./events";
-import { DragController, DragHandler } from "../controls/drag-controller";
-import * as Icons from "../icons";
-import { WidthFraction } from "../coordinates/types";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
-import { BaseStyle } from "../styles";
+import { SpectrumZoomEvent } from "./events.js";
+import { DragController, DragHandler } from "../controls/drag-controller.js";
+import * as Icons from "../icons.js";
+import { WidthFraction } from "../coordinates/types.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
+import { BaseStyle } from "../styles.js";
 
 @customElement("rr-scrollbar")
 export class RrScrollbar extends LitElement {

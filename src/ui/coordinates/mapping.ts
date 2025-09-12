@@ -1,5 +1,5 @@
-import { WidthFraction, DisplayFraction } from "./types";
-import { Zoom } from "./zoom";
+import { WidthFraction, DisplayFraction } from "./types.js";
+import { Zoom } from "./zoom.js";
 
 /** A "screen" bin, where bin 0 appears on the left of the screen and bin B-1 on the right. */
 export type ScreenBin = number;

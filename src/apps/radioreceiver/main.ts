@@ -3,32 +3,39 @@ import { customElement, query, state } from "lit/decorators.js";
 import {
   Demodulator,
   StereoStatusEvent,
-} from "@jtarrio/webrtlsdr/demod/demodulator";
+} from "@jtarrio/webrtlsdr/demod/demodulator.js";
 import {
   SampleClickEvent,
   SampleCounter,
-} from "@jtarrio/webrtlsdr/demod/sample-counter";
+} from "@jtarrio/webrtlsdr/demod/sample-counter.js";
 import {
   getMode,
   getSchemes,
   modeParameters,
   type Mode,
-} from "@jtarrio/webrtlsdr/demod/modes";
-import { Spectrum } from "@jtarrio/webrtlsdr/demod/spectrum";
-import { Float32Buffer } from "@jtarrio/webrtlsdr/dsp/buffers";
-import { RadioErrorType } from "@jtarrio/webrtlsdr/errors";
-import { Radio, RadioEvent, CompositeReceiver } from "@jtarrio/webrtlsdr/radio";
-import { DirectSampling, RTL2832U_Provider } from "@jtarrio/webrtlsdr/rtlsdr";
-import { ConfigProvider, loadConfig } from "./config";
+} from "@jtarrio/webrtlsdr/demod/modes.js";
+import { Spectrum } from "@jtarrio/webrtlsdr/demod/spectrum.js";
+import { Float32Buffer } from "@jtarrio/webrtlsdr/dsp/buffers.js";
+import { RadioErrorType } from "@jtarrio/webrtlsdr/errors.js";
+import {
+  Radio,
+  RadioEvent,
+  CompositeReceiver,
+} from "@jtarrio/webrtlsdr/radio.js";
+import {
+  DirectSampling,
+  RTL2832U_Provider,
+} from "@jtarrio/webrtlsdr/rtlsdr.js";
+import { ConfigProvider, loadConfig } from "./config.js";
 import {
   Preset,
   PresetsChangedEvent,
   PresetSelectedEvent,
   PresetsSortedEvent,
   RrPresets,
-} from "./presets";
-import { RrMainControls } from "./main-controls";
-import { type LowFrequencyMethod, RrSettings } from "./settings";
+} from "./presets.js";
+import { RrMainControls } from "./main-controls.js";
+import { type LowFrequencyMethod, RrSettings } from "./settings.js";
 import {
   CreateWindowRegistry,
   RrWindow,
@@ -37,19 +44,19 @@ import {
   WindowPosition,
   WindowResizedEvent,
   WindowSize,
-} from "../../ui/controls/window";
+} from "../../ui/controls/window.js";
 import {
   SpectrumDecibelRangeChangedEvent,
   SpectrumDragEvent,
   SpectrumHighlightChangedEvent,
   SpectrumTapEvent,
-} from "../../ui/spectrum/events";
-import { BaseStyle } from "../../ui/styles";
-import { RrSpectrum } from "../../ui/spectrum/spectrum";
-import "./main-controls";
-import "./settings";
-import "./presets";
-import "../../ui/spectrum/spectrum";
+} from "../../ui/spectrum/events.js";
+import { BaseStyle } from "../../ui/styles.js";
+import { RrSpectrum } from "../../ui/spectrum/spectrum.js";
+import "./main-controls.js";
+import "./settings.js";
+import "./presets.js";
+import "../../ui/spectrum/spectrum.js";
 
 type Frequency = {
   center: number;

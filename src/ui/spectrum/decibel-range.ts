@@ -5,10 +5,14 @@ import {
   DefaultMaxDecibels,
   DefaultMinDecibels,
   TopDecibels,
-} from "./constants";
-import { DefaultCubeHelix, type PaletteEntry, type Palette } from "./palette";
-import { SpectrumDecibelRangeChangedEvent } from "./events";
-import { DragController, DragHandler } from "../controls/drag-controller";
+} from "./constants.js";
+import {
+  DefaultCubeHelix,
+  type PaletteEntry,
+  type Palette,
+} from "./palette.js";
+import { SpectrumDecibelRangeChangedEvent } from "./events.js";
+import { DragController, DragHandler } from "../controls/drag-controller.js";
 
 @customElement("rr-decibel-range")
 export class RrDecibelRange extends LitElement {

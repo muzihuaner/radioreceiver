@@ -1,16 +1,12 @@
 import { css, html, LitElement, nothing } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
-import {
-  getSchemes,
-  modeParameters,
-  type Scheme,
-} from "@jtarrio/webrtlsdr/demod/modes";
-import { RrFrequencyInput } from "../../ui/controls/frequency-input";
-import { RrWindow, WindowDelegate } from "../../ui/controls/window";
-import * as Icons from "../../ui/icons";
-import { BaseStyle } from "../../ui/styles";
-import "../../ui/controls/frequency-input";
-import "../../ui/controls/window";
+import { getSchemes, modeParameters } from "@jtarrio/webrtlsdr/demod/modes.js";
+import { RrFrequencyInput } from "../../ui/controls/frequency-input.js";
+import { RrWindow, WindowDelegate } from "../../ui/controls/window.js";
+import * as Icons from "../../ui/icons.js";
+import { BaseStyle } from "../../ui/styles.js";
+import "../../ui/controls/frequency-input.js";
+import "../../ui/controls/window.js";
 
 @customElement("rr-main-controls")
 export class RrMainControls extends WindowDelegate(LitElement) {
@@ -225,8 +221,8 @@ export class RrMainControls extends WindowDelegate(LitElement) {
   @property({ attribute: false }) centerFrequency: number = 88500000;
   @property({ attribute: false }) tunedFrequency: number = 88500000;
   @property({ attribute: false }) tuningStep: number = 1000;
-  @property({ attribute: false }) availableSchemes: Scheme[] = getSchemes();
-  @property({ attribute: false }) scheme: Scheme = "WBFM";
+  @property({ attribute: false }) availableSchemes: string[] = getSchemes();
+  @property({ attribute: false }) scheme: string = "WBFM";
   @property({ attribute: false }) bandwidth: number = 150000;
   @property({ attribute: false }) stereo: boolean = true;
   @property({ attribute: false }) squelch: number = 0;
@@ -282,8 +278,7 @@ export class RrMainControls extends WindowDelegate(LitElement) {
   }
 
   private onModeChange(e: Event) {
-    this.scheme = (e.target as HTMLSelectElement).selectedOptions[0]
-      .value as Scheme;
+    this.scheme = (e.target as HTMLSelectElement).selectedOptions[0].value;
     this.dispatchEvent(new SchemeChangedEvent());
   }
 

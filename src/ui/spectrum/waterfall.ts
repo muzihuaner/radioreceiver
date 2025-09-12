@@ -4,13 +4,13 @@ import {
   DefaultFftSize,
   DefaultMaxDecibels,
   DefaultMinDecibels,
-} from "./constants";
-import { DefaultCubeHelix, type Palette } from "./palette";
-import { SpectrumDragEvent, SpectrumTapEvent } from "./events";
-import { DragController, DragHandler } from "../controls/drag-controller";
-import { Mapping } from "../coordinates/mapping";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
-import { WaterfallImage } from "./waterfall-image";
+} from "./constants.js";
+import { DefaultCubeHelix, type Palette } from "./palette.js";
+import { SpectrumDragEvent, SpectrumTapEvent } from "./events.js";
+import { DragController, DragHandler } from "../controls/drag-controller.js";
+import { Mapping } from "../coordinates/mapping.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
+import { WaterfallImage } from "./waterfall-image.js";
 
 @customElement("rr-waterfall")
 export class RrWaterfall extends LitElement {

@@ -1,12 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { BaseStyle } from "../../ui/styles";
-import {
-  RrWindow,
-  WindowDelegate,
-} from "../../ui/controls/window";
-import "../../ui/controls/frequency-input";
-import "../../ui/controls/window";
+import { BaseStyle } from "../../ui/styles.js";
+import { RrWindow, WindowDelegate } from "../../ui/controls/window.js";
+import "../../ui/controls/frequency-input.js";
+import "../../ui/controls/window.js";
 
 const AVAILABLE_SAMPLE_RATES: number[] = (() => {
   let rateSet: Set<number> = new Set([256000]);

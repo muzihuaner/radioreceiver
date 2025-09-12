@@ -1,8 +1,8 @@
 import { css, html, LitElement, nothing, PropertyValues } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
-import { DragController, DragHandler } from "./drag-controller";
-import * as Icons from "../icons";
-import { BaseStyle } from "../styles";
+import { DragController, DragHandler } from "./drag-controller.js";
+import * as Icons from "../icons.js";
+import { BaseStyle } from "../styles.js";
 
 @customElement("rr-window")
 export class RrWindow extends LitElement implements Window {

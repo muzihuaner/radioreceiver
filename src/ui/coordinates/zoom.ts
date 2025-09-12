@@ -1,4 +1,4 @@
-import { DisplayFraction, WidthFraction } from "./types";
+import { DisplayFraction, WidthFraction } from "./types.js";
 
 const MinLevel = 1;
 const MaxLevel = 16;

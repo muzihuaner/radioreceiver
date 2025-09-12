@@ -4,10 +4,10 @@ import {
   DefaultFftSize,
   DefaultMinDecibels,
   DefaultMaxDecibels,
-} from "./constants";
-import { SpectrumTapEvent } from "./events";
-import { Mapping } from "../coordinates/mapping";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
+} from "./constants.js";
+import { SpectrumTapEvent } from "./events.js";
+import { Mapping } from "../coordinates/mapping.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
 
 @customElement("rr-scope-line")
 export class RrScopeLine extends LitElement {

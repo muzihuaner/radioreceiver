@@ -160,16 +160,8 @@ type ConfigV1WindowSize = {
   height: number;
 };
 
-/** This definition parallels the Mode from scheme.ts */
-type ConfigV1Mode =
-  | { scheme: "WBFM"; stereo: boolean }
-  | { scheme: "NBFM"; maxF: number; squelch: number }
-  | { scheme: "AM"; bandwidth: number; squelch: number }
-  | { scheme: "USB"; bandwidth: number; squelch: number }
-  | { scheme: "LSB"; bandwidth: number; squelch: number }
-  | { scheme: "CW"; bandwidth: number };
-
-type ConfigV1Scheme = ConfigV1Mode["scheme"];
+/** This definition parallels the Mode from mode.ts */
+type ConfigV1Mode = { scheme: string; [key: string]: any };
 
 /** This definition parallels the LowFrequencyMethod from settings.ts */
 type ConfigV1LowFrequencyMethod = {
@@ -191,7 +183,7 @@ type ConfigV1Preset = {
   tunedFrequency: number;
   scale: number;
   tuningStep: number;
-  scheme: ConfigV1Scheme;
+  scheme: string;
   bandwidth: number;
   stereo: boolean;
   squelch: number;

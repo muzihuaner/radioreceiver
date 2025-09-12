@@ -1,4 +1,4 @@
-import "../../src/apps/radioreceiver/help";
+import "../../src/apps/radioreceiver/help.js";
 
 /** Builds a table of contents. */
 function buildToc() {

@@ -4,20 +4,19 @@ import {
   getMode,
   modeParameters,
   type Mode,
-  type Scheme,
-} from "@jtarrio/webrtlsdr/demod/modes";
-import * as Icons from "../../ui/icons";
-import { RrScope } from "../../ui/spectrum/scope";
-import { RrSpectrum } from "../../ui/spectrum/spectrum";
-import { type GridSelection } from "../../ui/spectrum/types";
-import { RrWaterfall } from "../../ui/spectrum/waterfall";
-import { RrMainControls } from "../radioreceiver/main-controls";
-import "../../ui/spectrum/scope";
-import "../../ui/spectrum/spectrum";
-import "../../ui/spectrum/waterfall";
-import "../radioreceiver/main-controls";
-import "../radioreceiver/presets";
-import "../radioreceiver/settings";
+} from "@jtarrio/webrtlsdr/demod/modes.js";
+import * as Icons from "../../ui/icons.js";
+import { RrScope } from "../../ui/spectrum/scope.js";
+import { RrSpectrum } from "../../ui/spectrum/spectrum.js";
+import { type GridSelection } from "../../ui/spectrum/types.js";
+import { RrWaterfall } from "../../ui/spectrum/waterfall.js";
+import { RrMainControls } from "../radioreceiver/main-controls.js";
+import "../../ui/spectrum/scope.js";
+import "../../ui/spectrum/spectrum.js";
+import "../../ui/spectrum/waterfall.js";
+import "../radioreceiver/main-controls.js";
+import "../radioreceiver/presets.js";
+import "../radioreceiver/settings.js";
 
 abstract class DemoSpectrumWidget extends LitElement {
   private observer?: IntersectionObserver;
@@ -240,11 +239,11 @@ export class RrDemoControls extends LitElement {
     </div>`;
   }
 
-  @property({ type: String, reflect: true }) scheme: Scheme = "WBFM";
+  @property({ type: String, reflect: true }) scheme: string = "WBFM";
   @state() mode: Mode = getMode(this.scheme);
 
   private onSchemeChanged(e: Event) {
-    this.scheme = (e.target as RrMainControls).scheme as Scheme;
+    this.scheme = (e.target as RrMainControls).scheme;
   }
 
   protected willUpdate(changed: PropertyValues): void {

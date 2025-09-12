@@ -1,10 +1,10 @@
 import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { SpectrumZoomEvent } from "./events";
-import { type GridSelection } from "./types";
-import { Zoom, DefaultZoom } from "../coordinates/zoom";
-import * as Icons from "../icons";
-import { BaseStyle } from "../styles";
+import { SpectrumZoomEvent } from "./events.js";
+import { type GridSelection } from "./types.js";
+import { Zoom, DefaultZoom } from "../coordinates/zoom.js";
+import * as Icons from "../icons.js";
+import { BaseStyle } from "../styles.js";
 
 @customElement("rr-zoombar")
 export class RrZoombar extends LitElement {
